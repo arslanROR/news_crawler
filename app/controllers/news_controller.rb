@@ -3,6 +3,7 @@ class NewsController < ApplicationController
   end
 
   def scrape
+    Crawler.call
   end
 
 end

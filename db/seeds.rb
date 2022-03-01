@@ -12,7 +12,7 @@ NEWS_WEBSITES_AND_CATEGORIES = [
   {
     website: {
       name: 'SAYS', 
-      link: 'https://says.com/my/', 
+      link: 'https://says.com/', 
       categories: [
         'news', 
         'tech', 
