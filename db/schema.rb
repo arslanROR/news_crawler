@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_192634) do
+ActiveRecord::Schema.define(version: 2022_03_02_170546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 2022_03_01_192634) do
     t.index ["news_website_id"], name: "index_categories_on_news_website_id"
   end
 
+  create_table "news", force: :cascade do |t|
+    t.bigint "news_website_id"
+    t.bigint "category_id"
+    t.string "title"
+    t.string "description"
+    t.string "author"
+    t.string "link"
+    t.string "image"
+    t.string "post_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_news_on_category_id"
+    t.index ["news_website_id"], name: "index_news_on_news_website_id"
+  end
+
   create_table "news_websites", force: :cascade do |t|
     t.string "name"
     t.string "link"
@@ -31,4 +46,6 @@ ActiveRecord::Schema.define(version: 2022_03_01_192634) do
   end
 
   add_foreign_key "categories", "news_websites"
+  add_foreign_key "news", "categories"
+  add_foreign_key "news", "news_websites"
 end
